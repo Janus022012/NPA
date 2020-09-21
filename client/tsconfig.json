@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020", // Webpack で ES5に変換されるのでここでは最新の仕様
+    "target": "es6", // Webpack で ES5に変換されるのでここでは最新の仕様
     "module": "commonjs",
     "jsx": "react",
     "sourceMap": true,
