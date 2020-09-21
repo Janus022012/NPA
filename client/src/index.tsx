@@ -1,7 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import App from './components/app';
 import 'ress';
 
-const container = document.getElementById('contents');
+const root = document.getElementById('root');
 
-ReactDOM.render(<p>こんにちは、世界</p>, container);
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  root,
+);
