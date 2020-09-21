@@ -8,7 +8,7 @@
     "start": "electron ./dist/main.js",
     "build:main": "tsc",
     "build:render": "webpack",
-    "test": "react-scripts test",
+    "test": "react-scripts src/ui/__tests__",
     "eject": "react-scripts eject"
   },
   "dependencies": {
