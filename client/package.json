@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "eslint src/",
     "start": "electron ./dist/main.js",
-    "build:main": "tsc",
-    "build:render": "webpack",
-    "test": "react-scripts src/components/ui/__tests__",
+    "build:main": "tsc -w",
+    "build:render": "webpack -w",
+    "test": "react-scripts src/components/__tests__",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -27,6 +27,8 @@
     "ress": "^3.0.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.7",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
@@ -35,6 +37,10 @@
     "@typescript-eslint/parser": "^4.1.0",
     "css-loader": "^4.3.0",
     "electron": "^10.1.1",
+    "electron-reload": "^1.5.0",
+    "electron-reloader": "^1.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.8.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.11.0",

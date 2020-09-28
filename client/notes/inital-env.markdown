@@ -33,7 +33,7 @@ $ npx tsc --init
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "jsx": "react",
+    "jsx": "react.markdown",
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true,
@@ -130,7 +130,7 @@ env:
   es6: true
   node: true
 extends:
-  - 'plugin:react/recommended'
+  - 'plugin:react.markdown/recommended'
   - google
   - prettier # 上の定義の整形に関するルールを無効化
 globals:
@@ -143,7 +143,7 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
 plugins:
-  - react
+  - react.markdown
   - '@typescript-eslint'
   - prettier # eslint-plugin-prettier の追加
 rules:

@@ -1,11 +1,22 @@
 import { app, BrowserWindow } from 'electron';
 import { PythonShell, Options } from 'python-shell';
+// electron-reloadはElectronのホットリロードのためのライブラリだが、typescript対応が
+// ないため、仕方なく以下の処置を行った。
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import electronReloader from 'electron-reload';
+
+electronReloader(__dirname, {
+  electron: require(`${__dirname}/../node_modules/electron`),
+});
 
 const createWindow = (): void => {
   // レンダープロセスとなる、ウィンドウオブジェクトを作成する。
   const window = new BrowserWindow({
     width: 1200,
     height: 600,
+    // フレームレスになる。
+    // frame: false,
     webPreferences: {
       nodeIntegration: false,
       nodeIntegrationInWorker: false,
@@ -13,11 +24,14 @@ const createWindow = (): void => {
     },
   });
 
+  // メニューを削除する。
+  window.setMenu(null);
+
   // tsc でコンパイルするので、出力先の dist の相対パスで指定する。
   window.loadFile('./index.html');
 
   // 開発者ツールを起動する
-  // window.webContents.openDevTools();
+  window.webContents.openDevTools();
 };
 
 // Electronの起動準備が終わったら、ウィンドウを作成する。

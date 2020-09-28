@@ -1,0 +1,3 @@
+# TypeScriptについて
+
+### importとrequireの違い

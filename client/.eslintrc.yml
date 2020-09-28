@@ -3,7 +3,6 @@ env:
   es6: true
   node: true
 extends:
-  - 'plugin:react/recommended'
   - google
   - 'plugin:@typescript-eslint/recommended' # <-- TypeScript推奨ルールを追加
   - prettier # 上の定義の整形に関するルールを無効化
@@ -17,7 +16,6 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
 plugins:
-  - react
   - '@typescript-eslint'
   - prettier
 # 0はチェックしない(="off")
