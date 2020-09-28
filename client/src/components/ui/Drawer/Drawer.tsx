@@ -38,6 +38,7 @@ import {
   TOOLBAR_HEIGHT,
 } from '../../../const/const';
 import { RootState } from '../../../state/redux/stores';
+import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const Drawer = (props: any) => {
+export const Drawer = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const open = useSelector((state: RootState) => state.drawer.openDrawer);

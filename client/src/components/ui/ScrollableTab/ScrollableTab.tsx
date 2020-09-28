@@ -24,18 +24,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     flexGrow: 1,
-    paddingTop: TOOLBAR_HEIGHT,
-    paddingLeft: DRAWER_CLOSE_WIDTH,
   },
   scrollableTab: {
+    paddingTop: TOOLBAR_HEIGHT,
+    paddingLeft: DRAWER_CLOSE_WIDTH,
     // TODO theme経由にする。
     zIndex: zIndex.tab,
-    width: `calc(100% - ${DRAWER_CLOSE_WIDTH}px)`,
     border: `solid 1px ${theme.palette.secondary.light}`,
   },
   scrollableTabShift: {
     paddingLeft: DRAWER_OPEN_WIDTH,
-    width: `calc(100% - ${DRAWER_OPEN_WIDTH}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -59,7 +57,7 @@ const ScrollableTab = () => {
   return (
     <div className={classes.root}>
       <AppBar
-        position="static"
+        position="fixed"
         color="secondary"
         elevation={0}
         className={clsx(classes.scrollableTab, {
@@ -72,8 +70,8 @@ const ScrollableTab = () => {
           textColor="inherit"
           variant="scrollable"
           scrollButtons="auto"
-          aria-label="scrollable auto tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
+          aria-label="scrollable auto tabs">
+          <Tab label="Home" {...a11yProps(0)} />
         </Tabs>
       </AppBar>
     </div>

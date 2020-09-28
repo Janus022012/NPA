@@ -1,3 +1,4 @@
+export const TOP_HEIGHT = '100px';
 export const TOOLBAR_HEIGHT = '50px';
 export const DRAWER_OPEN_WIDTH = '300px';
 export const DRAWER_CLOSE_WIDTH = '50px';
