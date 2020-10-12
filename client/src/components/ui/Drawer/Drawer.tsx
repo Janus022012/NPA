@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 // Material-UI
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,7 +28,6 @@ import CloudIcon from '@material-ui/icons/Cloud';
 
 // self-made
 import { closeDrawer } from '../../../state/redux/Module/drawerModule';
-import theme from '../../../theme/theme';
 import {
   DRAWER_ITEM_HEIGHT,
   DRAWER_OPEN_WIDTH,
@@ -38,7 +37,7 @@ import {
   TOOLBAR_HEIGHT,
 } from '../../../const/const';
 import { RootState } from '../../../state/redux/stores';
-import AppBar from '@material-ui/core/AppBar';
+import { addTab } from '../../../state/redux/Module/tabModule';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -93,10 +92,24 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const Drawer = () => {
+export const Drawer: FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const open = useSelector((state: RootState) => state.drawer.openDrawer);
+
+  const handleTab = (
+    tabName: string,
+    componentName: string,
+    propsList: Array<unknown>,
+  ) => {
+    dispatch(
+      addTab({
+        tabName: tabName,
+        componentName: componentName,
+        props: propsList,
+      }),
+    );
+  };
 
   const handleCloseDrawer = () => {
     dispatch(closeDrawer());
@@ -126,7 +139,10 @@ export const Drawer = () => {
         <div className={classes.drawerContent}>
           <List>
             <ListItem button key="1" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('PacketsGenerator', 'PacketsGenerator', []);
+                }}>
                 <CallMadeIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -134,7 +150,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="2" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('PacketsCapturer', 'PacketsCapturer', []);
+                }}>
                 <CallReceivedIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -142,7 +161,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="3" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('PacketsRouteTracer', 'PacketsRouteTracer', []);
+                }}>
                 <AccountTreeIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -150,7 +172,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="4" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('ConnectByConsole', 'ConnectByConsole', []);
+                }}>
                 <SettingsInputComponentIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -158,7 +183,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="5" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('ConnectBySSH/Telnet', 'ConnectBySSH/Telnet', []);
+                }}>
                 <ComputerIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -166,7 +194,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="6" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('Task', 'Task', []);
+                }}>
                 <AssignmentIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -174,7 +205,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="7" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('Parameters', 'Parameters', []);
+                }}>
                 <SaveIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -185,7 +219,10 @@ export const Drawer = () => {
           <Divider className={classes.drawerDivider} />
           <List>
             <ListItem button key="8" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('DisconnectNetwork', 'DisconnectNetwork', []);
+                }}>
                 <SignalWifiOffIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -193,7 +230,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="9" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('Account', 'Account', []);
+                }}>
                 <AccountBoxIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -201,7 +241,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="10" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('Cloud Setting', 'CloudSetting', []);
+                }}>
                 <CloudIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>
@@ -209,7 +252,10 @@ export const Drawer = () => {
               </ListItemText>
             </ListItem>
             <ListItem button key="11" className={classes.drawerItem}>
-              <ListItemIcon>
+              <ListItemIcon
+                onClick={() => {
+                  handleTab('Setting', 'Setting', []);
+                }}>
                 <SettingsIcon className={classes.drawerIcon} />
               </ListItemIcon>
               <ListItemText className={classes.drawerIconText}>

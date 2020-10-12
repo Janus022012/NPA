@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import AppBar from './ui/AppBar/AppBar';
 import ScrollableTab from './ui/ScrollableTab/ScrollableTab';
-import HomePage from './ui/HomePage/HomePage';
 
-export const App = () => {
+export const App: FC = () => {
   return (
     <React.Fragment>
       <AppBar />
       <ScrollableTab />
-      <HomePage />
     </React.Fragment>
   );
 };

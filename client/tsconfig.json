@@ -8,7 +8,11 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
   // コンパイル対象のファイル
   "files": [

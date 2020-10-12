@@ -46,6 +46,10 @@ module.exports = {
         // loaderを複数指定する場合はuseを使用する。
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader',
+      },
     ],
   },
   // 処理対象のファイルを記載する

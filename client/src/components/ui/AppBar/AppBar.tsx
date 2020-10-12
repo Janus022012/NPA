@@ -20,6 +20,7 @@ import { openDrawer } from '../../../state/redux/Module/drawerModule';
 import Drawer from '../Drawer/Drawer';
 import { DRAWER_OPEN_WIDTH, TOOLBAR_HEIGHT } from '../../../const/const';
 import { RootState } from '../../../state/redux/stores';
+import Logo from '../../../resources/img/logo/NPA_title_logo.png';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -90,9 +91,7 @@ export const AppBar = (props: any) => {
             onClick={handleOpenDrawer}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            NPA
-          </Typography>
+          <img src={Logo} />
         </Toolbar>
       </MaterialUIAppBar>
       <Drawer />
