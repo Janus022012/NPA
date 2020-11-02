@@ -32,15 +32,16 @@ jobs:
 
   deploy:
     executor: default
-    working_directory: ~/repo
+    working_directory: ~/client
     steps:
       - checkout
       - npm_install
       - run:
+          working_directory: ~/client
           name: build
           command: yarn build:main
       - aws-s3/sync:
-          from: client/dist
+          from: ~/client/dist
           to: s3://takasho-web-estimate-frontend-dev2
           overwrite: true
 
