@@ -50,6 +50,7 @@ jobs:
       - checkout
       - npm_install
       - ls
+      - install_libraries
       - run:
           working_directory: client
           name: build
