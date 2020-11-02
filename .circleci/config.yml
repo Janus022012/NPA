@@ -32,12 +32,12 @@ jobs:
 
   deploy:
     executor: default
-    working_directory: ~/client
+    working_directory: ~/repo
     steps:
       - checkout
       - npm_install
       - run:
-          working_directory: ~/client
+          working_directory: ~/repo/client
           name: build
           command: yarn build:main
       - aws-s3/sync:
