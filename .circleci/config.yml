@@ -9,12 +9,6 @@ executors:
       - image: circleci/node:10
 
 commands:
-  ls:
-    steps:
-      - run:
-          name: show dirctories
-          command: |
-            ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
   npm_install:
     steps:
       - restore_cache:
@@ -34,7 +28,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - ls
       - npm_install
 
   deploy:
@@ -43,15 +36,15 @@ jobs:
     steps:
       - checkout
       - npm_install
-      - ls
       - run:
           working_directory: client
           name: build
           command: |
             npx tsc
             npx webpack
+            ls -al
       - aws-s3/sync:
-          from: dist
+          from: client/dist
           to: s3://takasho-web-estimate-frontend-dev2
           overwrite: true
 
