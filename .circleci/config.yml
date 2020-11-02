@@ -46,8 +46,9 @@ jobs:
           working_directory: client
           name: build
           command: npm build
+      - ls
       - aws-s3/sync:
-          from: client/dist
+          from: dist
           to: s3://takasho-web-estimate-frontend-dev2
           overwrite: true
 
