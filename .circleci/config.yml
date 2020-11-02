@@ -15,6 +15,13 @@ commands:
           name: show dirctories
           command: |
             ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+  install_libraries:
+    steps:
+      - run:
+          name: install tsc
+          command: |
+            yarn install typescript
+            yarn install webpack
   npm_install:
     steps:
       - restore_cache:
@@ -46,7 +53,9 @@ jobs:
       - run:
           working_directory: client
           name: build
-          command: npm build
+          command: |
+            tsc
+            webpack
       - aws-s3/sync:
           from: dist
           to: s3://takasho-web-estimate-frontend-dev2
