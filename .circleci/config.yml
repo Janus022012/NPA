@@ -20,15 +20,15 @@ commands:
       - run:
           name: install tsc
           command: |
-            yarn add typescript
-            yarn add webpack
+            npm install -g typescript
+            npm install webpack
   npm_install:
     steps:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install npm
-          command: yarn install
+          command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
