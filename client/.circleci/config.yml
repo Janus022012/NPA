@@ -8,7 +8,6 @@ version: 2
         - run:
             name: 依存関係のインストール
             command: npm install
-
     build:
       docker:
         - image: innovatorjapan/awscli:latest
@@ -17,7 +16,6 @@ version: 2
         - run:
             name: TypeScriptコードのビルド
             command: yarn build:main
-
     deploy:
       working_directory: ~/repo
       environment:
