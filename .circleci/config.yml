@@ -20,8 +20,8 @@ commands:
       - run:
           name: install tsc
           command: |
-            yarn install typescript
-            yarn install webpack
+            yarn add typescript
+            yarn add webpack
   npm_install:
     steps:
       - restore_cache:
