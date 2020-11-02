@@ -7,7 +7,6 @@ executors:
   default:
     docker:
       - image: circleci/node:10
-      - image: circleci/python:2.7
 
 commands:
   ls:
@@ -43,11 +42,11 @@ jobs:
       - npm_install
       - ls
       - run:
-          working_directory: ~/client
+          working_directory: client
           name: build
           command: yarn build:main
       - aws-s3/sync:
-          from: ~/client/dist
+          from: client/dist
           to: s3://takasho-web-estimate-frontend-dev2
           overwrite: true
 
