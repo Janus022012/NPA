@@ -24,7 +24,7 @@ commands:
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - client/node_modules
 
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
       - run:
           working_directory: client
           name: build
-          command: yarn build:main
+          command: npm build
       - aws-s3/sync:
           from: client/dist
           to: s3://takasho-web-estimate-frontend-dev2
