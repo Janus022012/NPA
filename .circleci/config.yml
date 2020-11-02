@@ -40,7 +40,7 @@ jobs:
           name: build
           command: yarn build:main
       - aws-s3/sync:
-          from: dist
+          from: client/dist
           to: s3://takasho-web-estimate-frontend-dev2
           overwrite: true
 
