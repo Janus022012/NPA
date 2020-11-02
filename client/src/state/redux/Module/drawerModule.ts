@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { DrawerState } from '../../../type/Module/DrawerState';
 
 const initialState: DrawerState = {
