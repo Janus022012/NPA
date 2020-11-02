@@ -10,7 +10,6 @@
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true
   },
-  // コンパイル対象のファイル
   "files": [
     "src/electron/main.ts"
   ]

@@ -15,18 +15,12 @@ commands:
           name: show dirctories
           command: |
             ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
-  install_libraries:
-    steps:
-      - run:
-          name: install tsc
-          command: |
-            npm install typescript
-            npm install webpack
   npm_install:
     steps:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
+          working_directory: client
           name: install npm
           command: npm install
       - save_cache:
@@ -50,7 +44,6 @@ jobs:
       - checkout
       - npm_install
       - ls
-      - install_libraries
       - run:
           working_directory: client
           name: build
