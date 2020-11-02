@@ -37,7 +37,7 @@ jobs:
       - checkout
       - npm_install
       - run:
-          working_directory: ~/repo/client
+          working_directory: ~/client
           name: build
           command: yarn build:main
       - aws-s3/sync:
