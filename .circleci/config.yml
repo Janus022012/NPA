@@ -12,6 +12,7 @@ executors:
 commands:
   ls:
     - run:
+        name: show dirctories
         command: ls -l
   npm_install:
     steps:
