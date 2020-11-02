@@ -1,32 +1,57 @@
-version: 2
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
+
+executors:
+  default:
+    docker:
+      - image: circleci/node:10
+      - image: circleci/python:2.7
+
+commands:
+  npm_install:
+    steps:
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install npm
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
 jobs:
-  install_deps:
-    docker:
-        - image: innovatorjapan/awscli:latest
-    steps:
-      - checkout
-      - run:
-          name: 依存関係のインストール
-          command: npm install
   build:
-    docker:
-      - image: innovatorjapan/awscli:latest
-    steps:
-      - checkout
-      - run:
-          name: TypeScriptコードのビルド
-          command: yarn build:main
-  deploy:
+    executor: default
     working_directory: ~/repo
-    environment:
-      - AWS_S3_BUCKET_NAME: takasho-web-estimate-frontend-dev
-    docker:
-      - image: innovatorjapan/awscli:latest
     steps:
       - checkout
+      - npm_install
+
+  deploy:
+    executor: default
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - npm_install
       - run:
-          name: Deploy to S3 if branch is Master.
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              aws s3 sync ~/repo s3://${AWS_S3_BUCKET_NAME}/ --exact-timestamps --delete
-            fi
+          name: build
+          command: yarn build:main
+      - aws-s3/sync:
+          from: dist
+          to: s3://takasho-web-estimate-frontend-dev2
+          overwrite: true
+
+workflows:
+  version: 2
+  continuous-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
