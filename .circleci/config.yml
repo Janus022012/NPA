@@ -55,8 +55,8 @@ jobs:
           working_directory: client
           name: build
           command: |
-            tsc
-            webpack
+            npx tsc
+            npx webpack
       - aws-s3/sync:
           from: dist
           to: s3://takasho-web-estimate-frontend-dev2
