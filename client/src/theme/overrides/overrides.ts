@@ -4,7 +4,7 @@ import MuiIconButton from './MuiIconButton';
 import MuiList from './MuiList';
 
 export default {
-  MuiCssBaseline,
+  //MuiCssBaseline,
   MuiToolbar,
   MuiIconButton,
   MuiList,
