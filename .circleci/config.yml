@@ -13,7 +13,8 @@ commands:
     steps:
       - run:
           name: show dirctories
-          command: ls
+          command: |
+            ls -R | grep ":" | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
   npm_install:
     steps:
       - restore_cache:
@@ -46,7 +47,6 @@ jobs:
           working_directory: client
           name: build
           command: npm build
-      - ls
       - aws-s3/sync:
           from: dist
           to: s3://takasho-web-estimate-frontend-dev2
