@@ -20,7 +20,7 @@ commands:
       - run:
           name: install tsc
           command: |
-            npm install -g typescript
+            npm install typescript
             npm install webpack
   npm_install:
     steps:
